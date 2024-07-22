@@ -1,0 +1,18 @@
+{
+  "adaptiveform": "0.10.0",
+  "items": [
+    {
+      "fieldType": "text-input",
+      "name": "name",
+      "label": {
+        "value": "Name"
+      }
+    }
+  ],
+  "description": "Sample form",
+  "title": "Adaptive Form",
+  "metadata": {
+    "grammar": "json-formula-1.0.0",
+    "version": "1.0.0"
+  }
+}

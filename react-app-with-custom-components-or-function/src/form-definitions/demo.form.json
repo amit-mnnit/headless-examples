@@ -1,0 +1,46 @@
+{
+  "adaptiveform": "0.10.0",
+  "items": [
+    {
+      "fieldType": "text-input",
+      "name": "fName",
+      "label": {
+        "value": "First Name"
+      }
+    },
+    {
+      "fieldType": "text-input",
+      "name": "lName",
+      "label": {
+        "value": "Last Name"
+      }
+    },
+    {
+      "fieldType": "text-input",
+      "name": "name",
+      "label": {
+        "value": "Full Name"
+      },
+      "rules": {
+        "value": "myCustomFunction(fName.$value,lName.$value)"
+      }
+    },
+    {
+      "fieldType": "number-input",
+      ":type": "custom-slider",
+      "name": "slider",
+      "maximum": 100,
+      "minimum": 0,
+      "step": 2,
+      "label": {
+        "value": "Slider"
+      }
+    }
+  ],
+  "description": "Sample form",
+  "title": "Adaptive Form",
+  "metadata": {
+    "grammar": "json-formula-1.0.0",
+    "version": "1.0.0"
+  }
+}
