@@ -1,6 +1,6 @@
 
 /**
- * sum of two value
+ * concat of two string
  * @param {string} a.
  * @param {string} b.
  * @returns {string} - return concat of a and b.

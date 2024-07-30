@@ -27,7 +27,7 @@
     },
     {
       "fieldType": "number-input",
-      ":type": "custom-slider",
+      ":type": "custom:slider",
       "name": "slider",
       "maximum": 100,
       "minimum": 0,

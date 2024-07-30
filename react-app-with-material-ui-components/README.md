@@ -1,18 +1,37 @@
-# Getting Started with Create React App
+# Getting Started with AEM Headless Adaptive Form App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This is a sample react app which will help to create JSON based forms using Adaptive Form libraries. This application is built to consume the form model definition of an AEM Adaptive Form.
+
+## System Requirements
+
+* Latest release of GIT
+
+* Node.js 16.13.0 or later
+
+* React 16.14.0 or later
+
+
+## Libraries required
+[af-core](https://www.npmjs.com/package/@aemforms/af-core) - To manage the state and create form model using json.
+
+[af-react-renderer](https://www.npmjs.com/package/@aemforms/af-react-renderer) - To communicate between model and view layer
+
+[Material UI](https://mui.com/material-ui/getting-started/)
+
 
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `npm install`
+
+Install dependencies.
+
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+After running npm start, your app will be automatically opened in your browser (at path http://localhost:3000). If you make edits, the page will reload.
 
 ### `npm test`
 
@@ -21,26 +40,56 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder. It bundles React in production mode and optimizes the build for the best performance. See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Create Components using Material UI
+For creating custom components, follow these guidelines:
+- State management will be handled by Adaptive Form component itself.
+- All the properties that are required to create a component comes in props so you can consume them eg. value, errorMessage, description, label, required, dispatchChange and other.
 
-### `npm run eject`
+- Create `withRuleEngine` Hook, that will help to communicate between model and view layer. You can copy paste the code from [here](https://github.com/adobe/aem-forms-headless-components/blob/main/packages/react-vanilla-components/src/utils/withRuleEngine.tsx)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Create a [TextField](src/adaptiveForm/components/TextField.tsx) component using material ui and add `withRuleEngine` hook.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+TextField.tsx
+```
+import {withRuleEngine} from "./adaptiveForm/shared/withRuleEngine.tsx";
+import { FormControl} from '@mui/material';
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+const TextField = (props) => {
+  return (
+    <FormControl>
+    <!-- add code here -->
+    </FormControl>
+  )
+};
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+export default withRuleEngine(TextField);
+```
 
-## Learn More
+- Create a `mappings.js` file in the following manner and add your components accordingly.
+```
+import Form from "./adaptiveForm/components/Form";
+import TextField from "./adaptiveForm/components/TextField";
+import NumberField from "./adaptiveForm/components/NumberField";
+import panel from "./adaptiveForm/components/panel";
+export default {
+  'form': Form,
+  'text-input': TextField,
+  'number-input': NumberField,
+  'panel': Panel,
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Form.ts
+```
+import {mappings} from './mappings'
+const json = {...}
+<AdaptiveForm mappings={mappings} formJson={json} />
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Links
+1. [Story book](https://opensource.adobe.com/aem-forms-af-runtime/storybook)
+2. [HTTP API Docs](https://opensource.adobe.com/aem-forms-af-runtime/api)
+3. [Adaptive Form Runtime packages](https://www.npmjs.com/org/aemforms)

@@ -1,14 +1,23 @@
-# Getting Started with AEM Headless Forms App Starter
+# Getting Started with AEM Headless Forms App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created using webpack and you can use any build tool as per your preference like parcel, rollup and etc.
 
-This application is built to consume the form model definition of an adaptive form.
+This is a sample react app which will help to create JSON based forms using Adaptive Form libraries. This application is built to consume the form model definition of an AEM Adaptive Form.
 
 ## System Requirements
 
 * Latest release of GIT
 
 * Node.js 16.13.0 or later
+
+* React 16.14.0 or later
+
+## Libraries required
+[af-core](https://www.npmjs.com/package/@aemforms/af-core) - To manage the state and create form model using json.
+
+[af-react-renderer](https://www.npmjs.com/package/@aemforms/af-react-renderer) - To communicate between model and view layer
+
+[af-react-vanilla-components](https://www.npmjs.com/package/@aemforms/af-react-vanilla-components) - View layer components that is optional you can create your own components.
 
 ## Available Scripts
 
@@ -20,24 +29,12 @@ Install dependencies.
 
 ### `npm start`
 
-Runs the app in development mode by proxying the JSON model from an existing API or local filesystem.
-
 After running npm start, your app will be automatically opened in your browser (at path http://localhost:3000). If you make edits, the page will reload.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build:prod`
 
-Builds the app for production to the `build` folder. It bundles React in production mode and optimizes the build for the best performance. See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Using external api to fetch form model json
-
-By default, this project is configured to pick the form model json from ../form-definitions/form-model.json. For scenarios where the model needs to be served from an external API, we will need to update the below environment variables in [.env](./.env) file.
-* `USE_LOCAL_JSON` : Set this to 'false'
-* `FORM_API` : Set the value to the HTTP endpoint.
+Builds the app for production to the `build` folder. It bundles React in production mode and optimizes the build for the best performance.
 
 ## Mappings Object
 
@@ -57,17 +54,7 @@ const json = {...}
 <AdaptiveForm mappings={mappings} formJson={json} />
 ```
 
-If you are not using React Spectrum then you might need to start your app with the React Spectrum Provider.
-
-If you are not using Provider at your app level, you can use that with the Adaptive Form Super Component
-
-```
-import {mappings} from '@aemforms/af-react-vanilla-components'
-const json = {...}
-<AdaptiveForm mappings={mappings} formJson={json} />
-```
 # Links
 1. [Story book](https://opensource.adobe.com/aem-forms-af-runtime/storybook)
 2. [HTTP API Docs](https://opensource.adobe.com/aem-forms-af-runtime/api)
 3. [Adaptive Form Runtime packages](https://www.npmjs.com/org/aemforms)
-

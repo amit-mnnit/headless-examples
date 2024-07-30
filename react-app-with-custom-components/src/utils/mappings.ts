@@ -3,5 +3,5 @@ import Slider from "../components/slider";
 
 export default {
   ...mappings,
-  'custom-slider': Slider
+  'custom:slider': Slider
 }

@@ -1,36 +1,56 @@
+# Getting Started with AEM Headless Adaptive Form App
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+This is a sample next.js app which will help to create JSON based forms using Adaptive Form libraries. This application is built to consume the form model definition of an AEM Adaptive Form.
 
-First, run the development server:
+## System Requirements
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* Latest release of GIT
+
+* Node.js 16.13.0 or later
+
+* React 16.14.0 or later
+
+## Libraries required
+[af-core](https://www.npmjs.com/package/@aemforms/af-core) - To manage the state and create form model using json.
+
+[af-react-renderer](https://www.npmjs.com/package/@aemforms/af-react-renderer) - To communicate between model and view layer
+
+[af-react-vanilla-components](https://www.npmjs.com/package/@aemforms/af-react-vanilla-components) - View layer components that is optional you can create your own components.
+
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm install`
+
+Install dependencies.
+
+### `npm run dev`
+
+Run the development server and ppen [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Mappings Object
+
+A Mappings Object is a JavaScript map that maps the field types defined in the Specification to its respective React Component. The Adaptive Form Super Component uses this map to render the different components defined in the Form JSON.
+
+To use that in your project use the following import, assuming you have added the project as a dependency in your project
+
+```
+import {mappings} from '@aemforms/af-react-vanilla-components'
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once you have fetched the JSON for the form or you can create json locally, the code would look like
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+import {mappings} from '@aemforms/af-react-vanilla-components'
+const json = {...}
+<AdaptiveForm mappings={mappings} formJson={json} />
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Links
+1. [Story book](https://opensource.adobe.com/aem-forms-af-runtime/storybook)
+2. [HTTP API Docs](https://opensource.adobe.com/aem-forms-af-runtime/api)
+3. [Adaptive Form Runtime packages](https://www.npmjs.com/org/aemforms)
