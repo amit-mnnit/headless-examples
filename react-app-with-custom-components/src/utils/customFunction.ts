@@ -5,7 +5,7 @@
  * @param {string} b.
  * @returns {string} - return concat of a and b.
  */
-function myCustomFunction(a: string, b: string): string {
+function conactWithSpace(a: string, b: string): string {
   if(!a && !b) {
     return '';
   }
@@ -13,5 +13,5 @@ function myCustomFunction(a: string, b: string): string {
 }
 
 export {
-  myCustomFunction
+  conactWithSpace
 }

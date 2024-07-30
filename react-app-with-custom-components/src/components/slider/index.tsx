@@ -31,6 +31,7 @@ const Slider = (props: PROPS) => {
           disabled={!enabled}
           name={name}
         />
+        {value || ''}
         {description && !isError && <div className="slider-container__description">{description}</div>}
         {isError ? <div className="slider-container__errormessage">{errorMessage}</div>: null}
     </div>

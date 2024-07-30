@@ -4,16 +4,14 @@ import { Action, FunctionRuntime } from "@aemforms/af-core";
 import "@aemforms/af-canvas-theme/dist/theme.css";
 import * as defauleCustomFunction from '@aemforms/af-custom-functions';
 
-import { myCustomFunction } from "../utils/customFunction";
+import { conactWithSpace } from "../utils/customFunction";
 import demoJson from "../form-definitions/demo.form.json";
 import customMappings from "../utils/mappings";
 
 const Form = () => {
-
-  useEffect(() => {
-    FunctionRuntime.registerFunctions({ ...defauleCustomFunction, myCustomFunction });
-  }, []);
-
+  
+  FunctionRuntime.registerFunctions({ ...defauleCustomFunction, conactWithSpace });
+  
   const onSubmitSuccess = (action: Action) => {
     console.log("Submitting " + action);
     const thankyouPage = action?.payload?.body?.redirectUrl;
@@ -41,7 +39,7 @@ const Form = () => {
 
   return (
     <AdaptiveForm
-      formJson={demoJson}
+      formJson={demoJson as any}
       mappings={customMappings}
       onInitialize={onInitialize}
       onFieldChanged={onFieldChanged}

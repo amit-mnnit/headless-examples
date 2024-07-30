@@ -123,13 +123,11 @@ import {FunctionRuntime } from "@aemforms/af-core";
 <!-- default custom function(optional) -->
 import * as defauleCustomFunction from '@aemforms/af-custom-functions';
 <!-- custom function -->
-import { myCustomFunction } from "./customFunction";
+import { conactWithSpace } from "./customFunction";
 
 const Form = () => {
 
-  useEffect(() => {
-    FunctionRuntime.registerFunctions({ ...defauleCustomFunction, myCustomFunction });
-  }, []);
+  FunctionRuntime.registerFunctions({ ...defauleCustomFunction, conactWithSpace });
 
   return (
       <AdaptiveForm
@@ -148,7 +146,7 @@ const Form = () => {
       "value": "Full Name"
     },
     "rules": {
-      "value": "myCustomFunction(fName.$value,lName.$value)"
+      "value": "conactWithSpace(firstName.$value,lastName.$value)"
     }
 }
 ```

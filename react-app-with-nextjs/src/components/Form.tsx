@@ -35,7 +35,7 @@ const Form = () => {
 
   return (
     <AdaptiveForm
-      formJson={demoJson}
+      formJson={demoJson as any}
       mappings={customMappings}
       onInitialize={onInitialize}
       onFieldChanged={onFieldChanged}
