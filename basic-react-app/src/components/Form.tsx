@@ -1,11 +1,12 @@
-import React from "react";
 import { AdaptiveForm } from "@aemforms/af-react-renderer";
 import customMappings from "../utils/mappings";
 import { Action } from "@aemforms/af-core";
-import demoJson from "../form-definitions/demo.form.json";
 import "@aemforms/af-canvas-theme/dist/theme.css";
+import useFetch from "../custom-hooks/useFetch";
 
 const Form = () => {
+  const json  = useFetch();
+
   const onSubmitSuccess = (action: Action) => {
     console.log("Submitting " + action);
     const thankyouPage = action?.payload?.body?.redirectUrl;
@@ -31,9 +32,11 @@ const Form = () => {
     );
   };
 
+  if(!json) return null;
+
   return (
     <AdaptiveForm
-      formJson={demoJson as any}
+      formJson={json as any}
       mappings={customMappings}
       onInitialize={onInitialize}
       onFieldChanged={onFieldChanged}
