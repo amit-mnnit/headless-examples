@@ -5,10 +5,11 @@ import "@aemforms/af-canvas-theme/dist/theme.css";
 import * as defauleCustomFunction from '@aemforms/af-custom-functions';
 
 import { conactWithSpace } from "../utils/customFunction";
-import demoJson from "../form-definitions/demo.form.json";
+import useFetch from "../custom-hooks/useFetch";
 import customMappings from "../utils/mappings";
 
 const Form = () => {
+  const demoJson  = useFetch();
   
   FunctionRuntime.registerFunctions({ ...defauleCustomFunction, conactWithSpace });
   
@@ -37,6 +38,8 @@ const Form = () => {
     );
   };
 
+  if(!demoJson) return null;
+  
   return (
     <AdaptiveForm
       formJson={demoJson as any}

@@ -5,26 +5,22 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const path = require('path');
 require('dotenv').config({ path: './.env' });
 
+const {
+  REACT_APP_AEM_HOST, REACT_APP_USE_PROXY,
+  REACT_APP_AEM_AUTH_USER, REACT_APP_AEM_AUTH_PASS
+} = process.env;
+
+
 const getAEMBasicAuth = () => {
-    if (process.env.AEM_USERNAME && process.env.AEM_PASSWORD) {
-        const credentialsString = process.env.AEM_USERNAME + ":" + process.env.AEM_PASSWORD
-        return 'Basic ' + Buffer.from(credentialsString).toString('base64');
-    } else {
-        return "";
-    }
-}
+  const credentialsString = REACT_APP_AEM_AUTH_USER + ":" + REACT_APP_AEM_AUTH_PASS;
+  return "Basic " + Buffer.from(credentialsString).toString("base64");
+};
 
 const aemProxyReq = (proxyReq) => {
-    console.log("inside proxy req");
-    if (process.env.AEM_URL && proxyReq.getHeader("origin")) {
-        console.log("setting new origin header");
-        proxyReq.setHeader("origin", process.env.AEM_URL);
-    }
-    const authValue = getAEMBasicAuth()
-    if (authValue) {
-        console.log("setting authorization header");
-        proxyReq.setHeader("authorization", authValue);
-    }
+  if (REACT_APP_USE_PROXY === "true") {
+    const authValue = getAEMBasicAuth();
+    proxyReq.setHeader("authorization", authValue);
+  }
 };
 
 module.exports =
@@ -44,18 +40,14 @@ module.exports =
             compress: true,
             port: 3000,
             proxy: {
-                '/api': {
-                    target: process.env.FORM_API,
-                    pathRewrite: { '^/api': '' },
-                },
                 '/adobe': {
-                    target: process.env.AEM_URL,
+                    target: REACT_APP_AEM_HOST,
                     secure: false,
                     changeOrigin: true,
                     onProxyReq: aemProxyReq
                 },
                 '/content': {
-                    target: process.env.AEM_URL,
+                    target: REACT_APP_AEM_HOST,
                     secure: false,
                     changeOrigin: true,
                     onProxyReq: aemProxyReq

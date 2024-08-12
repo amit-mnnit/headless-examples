@@ -3,11 +3,13 @@ import React from "react";
 import { AdaptiveForm } from "@aemforms/af-react-renderer";
 import customMappings from "../utils/mappings";
 import { Action } from "@aemforms/af-core";
-import demoJson from "../form-definitions/demo.form.json";
 import "@aemforms/af-canvas-theme/dist/theme.css";
 import "@adobe/json-formula";
+import useFetch from "../custom-hooks/useFetch";
 
 const Form = () => {
+  const demoJson  = useFetch();
+
   const onSubmitSuccess = (action: Action) => {
     console.log("Submitting " + action);
     const thankyouPage = action?.payload?.body?.redirectUrl;
@@ -32,6 +34,8 @@ const Form = () => {
       "On Field Changed (Executes everytime a form field is updated)"
     );
   };
+
+  if(!demoJson) return null;
 
   return (
     <AdaptiveForm

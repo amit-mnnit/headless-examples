@@ -32,12 +32,11 @@ module.exports = {
             process: {
                 browser: true,
                 env: {
-                    USE_LOCAL_JSON: `'${process.env.USE_LOCAL_JSON}'`,
-                    AEM_FORM_PATH: `'${process.env.AEM_FORM_PATH}'`,
-                    AEM_USERNAME: `'${process.env.AEM_USERNAME}'`,
-                    AEM_PASSWORD: `'${process.env.AEM_PASSWORD}'`,
-                    AEM_URL: `'${process.env.AEM_URL}'`,
-                    FORM_API: `'${process.env.FORM_API}'`
+                    REACT_APP_USE_PROXY: `'${process.env.REACT_APP_USE_PROXY}'`,
+                    REACT_APP_AEM_FORM_PATH: `'${process.env.REACT_APP_AEM_FORM_PATH}'`,
+                    REACT_APP_AEM_AUTH_USER: `'${process.env.REACT_APP_AEM_AUTH_USER}'`,
+                    REACT_APP_AEM_AUTH_PASS: `'${process.env.REACT_APP_AEM_AUTH_PASS}'`,
+                    REACT_APP_AEM_HOST: `'${process.env.REACT_APP_AEM_HOST}'`,
                 }
             }
         }),
