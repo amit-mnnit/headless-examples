@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
+import {getURL} from '../utils/utils';
 
 const useFetch = () => {
   const [data, setData] = useState(null);
-  const { REACT_APP_AEM_FORM_PATH } = process.env;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `/content/forms/af/${REACT_APP_AEM_FORM_PATH}/jcr:content/guideContainer.model.json`;
-        const response = await fetch(url);
+        const response = await fetch(getURL());
         const result = await response.json();
         setData(result);
       } catch (error) {
