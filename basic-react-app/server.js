@@ -26,7 +26,7 @@ const options = {
   }
 };
 
-
+app.use('/', express.static('build'));
 const proxy = createProxyMiddleware(options);
 app.use('/content', proxy);
 
