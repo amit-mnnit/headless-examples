@@ -7,6 +7,7 @@
     "@aemforms/af-core": "^0.22.94",
     "@aemforms/af-react-renderer": "^0.22.94",
     "@aemforms/af-react-vanilla-components": "^1.0.19",
+    "@codesandbox/utils": "^1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
